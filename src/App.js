@@ -1,15 +1,24 @@
-
-import './App.css'
+import useLocalStorage from 'use-local-storage';
+import './index.css'
 
 //burda fontsawe versiyona dikkat et 
 // bunu index yapisritr   <script src="https://kit.fontawesome.com/96a168c04b.js" crossorigin="anonymous"></script>
 //versiyon 5.15.4 
 function App() {
+
+
+const [theme,setTheme] = useLocalStorage('theme'? 'dark' : 'light')
+
+const swicthTheme = ()=>{
+  const newTheme = theme === 'light' ? 'dark':'light'
+  setTheme(newTheme)
+}
+
   return (
-    <div className="App">
+    <div className="app" data-theme={theme}>
       <div className='login'>
         <h1>Login</h1>
-        <div className='contanier'>
+        <div className='container'>
           <div className='top'>
           <i class="fab fa-google"></i>
           <i class="fab fa-facebook-square"></i>
@@ -37,7 +46,7 @@ function App() {
         </div>
         <div className='theme-toggle'>
           <h2>Light Theme</h2>
-          <i class='fas fa-toggle-on'></i>
+          <i onClick={swicthTheme} class='fas fa-toggle-on'></i>
         </div>
       </div>
 
